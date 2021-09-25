@@ -5,6 +5,8 @@
 		using the PIT module.
 
 	\author J. Luis Pizano Escalante, luispizano@iteso.mx
+				Ricardo Ruiz Ambriz
+				Erick Luna
 	\date	17/09/2018
  */
 

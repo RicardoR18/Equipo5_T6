@@ -5,6 +5,8 @@
 		It contains all the implementation for configuration functions and runtime functions.
 		i.e., this is the application programming interface (API) for the GPIO peripheral.
 	\author J. Luis Pizano Escalante, luispizano@iteso.mx
+				Ricardo Ruiz Ambriz
+				Erick Luna
 	\date	18/02/2019
 	\todo
 	    Interrupts are not implemented in this API implementation.
