@@ -18,6 +18,7 @@ volatile uint8_t PIT_user_status_flag = 0;
 void PIT0_IRQHandler(void){
 	PIT_user_status_flag = 1;
 	PIT->CHANNEL[0].TFLG |= PIT_TFLG_TIF_MASK;
+	uint32_t dummyRead = PIT->CHANNEL[0].TCTRL;
 }
 /********************************************************************************************/
 /********************************************************************************************/
