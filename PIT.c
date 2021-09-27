@@ -18,7 +18,7 @@ volatile uint8_t PIT_user_status_flag = 0;
 void PIT0_IRQHandler(void){
 	PIT_user_status_flag = 1;
 	PIT->CHANNEL[0].TFLG |= PIT_TFLG_TIF_MASK;
-	uint32_t dummyRead = PIT->CHANNEL[0].TCTRL;
+	volatile uint32_t dummyRead = PIT->CHANNEL[0].TCTRL;
 }
 /********************************************************************************************/
 /********************************************************************************************/
@@ -35,7 +35,7 @@ void PIT0_IRQHandler(void){
  */
 void PIT_delay(PIT_timer_t pit_timer, My_float_pit_t system_clock , My_float_pit_t delay){
 	//LDVAL trigger = (period / clock period) -1
-	PIT->CHANNEL[pit_timer].LDVAL= (uint32_t)delay*system_clock-1;
+	PIT->CHANNEL[pit_timer].LDVAL= (uint32_t)delay*system_clock/2-1;
 }
 
 /********************************************************************************************/
@@ -68,7 +68,7 @@ uint8_t PIT_get_interrupt_flag_status(void){
  	 It is not the flag related with bit TIF in PIT->CHANNEL[0].TFLG |= PIT_TFLG_TIF_MASK, this flag must be clear in the ISR of the PIT
 
  	 \param[in]  void.
- 	 \return uint8_t flag status
+ 	 \return void
  */
 void PIT_clear_interrupt_flag(void){
 
@@ -80,7 +80,7 @@ void PIT_clear_interrupt_flag(void){
  	 \brief	It enables the PIT
 
  	 \param[in]  void.
- 	 \return uint8_t flag status
+ 	 \return void
  */
 void PIT_enable(void){
 	//Enables the module .
@@ -94,7 +94,7 @@ void PIT_enable(void){
  	 \return void
  */
 void PIT_CH_enable(PIT_timer_t pit){
-	//Enables the module and stop timers in debug.
+	//Enables the specific module.
 	PIT->CHANNEL[pit].TCTRL |= PIT_TCTRL_TEN_MASK ;
 }
 
@@ -103,7 +103,7 @@ void PIT_CH_enable(PIT_timer_t pit){
  	 \brief	It enable de interrupt capabilities of the PIT
 
  	 \param[in]  void.
- 	 \return uint8_t flag status
+ 	 \return void
  */
 void PIT_enable_interrupt(PIT_timer_t pit){
 	PIT->CHANNEL[0].TCTRL |= PIT_TCTRL_TIE_MASK ;
