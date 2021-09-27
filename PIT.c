@@ -35,6 +35,7 @@ void PIT0_IRQHandler(void){
  */
 void PIT_delay(PIT_timer_t pit_timer, My_float_pit_t system_clock , My_float_pit_t delay){
 	//LDVAL trigger = (period / clock period) -1
+	//System_cloclk is divided by 2 because PIT works at 10.5Mhz.
 	PIT->CHANNEL[pit_timer].LDVAL= (uint32_t)delay*system_clock/2-1;
 }
 
