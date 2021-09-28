@@ -18,15 +18,15 @@
 #include "Bits.h"
 
 #define SYSTEM_CLOCK (21000000U)
-#define DELAY (1.0F)
+#define DELAY (0.0001F)
 /*Delay const values
  * 0.5s
- * 0.5s
- * 0.125s
- * 0.001s
- * 0.0001s
- * 0.00001s
- * 0.000001s
+ * 0.2s			si da.
+ * 0.125s		si da.
+ * 0.001s		si da.
+ * 0.0001s		Se aproxima. 9.94 Khz/10.0Khz
+ * 0.00001s		No funciona 33.33Khz/100Khz
+ * 0.000001s 	No funciona se queda en 3v3.
  * */
 
 void PIT0_IRQHandler(void);
